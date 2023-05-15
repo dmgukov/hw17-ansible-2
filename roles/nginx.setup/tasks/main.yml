@@ -1,0 +1,19 @@
+- name: Installing Nginx
+  ansible.builtin.apt: 
+    name: nginx
+    state: present
+    force_apt_get: true
+    update_cache: true
+    cache_valid_time: 3600
+- name: Ensure that Nginx service is running
+  ansible.builtin.service:
+    name: nginx
+    state: started
+- name: Templating index.html to server
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Nginx
