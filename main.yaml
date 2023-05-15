@@ -1,0 +1,23 @@
+---
+- name: Installing Nginx server with MySQL
+  hosts: all
+  roles:
+    - geerlingguy.ntp
+  tasks:
+    - ansible.builtin.debug: msg="Nginx will be installed"
+    - name: 
+      include_role:
+        name: nginx.setup 
+    - ansible.builtin.debug: msg="MySQL will be installed"
+    - name: 
+      include_role:
+        name: geerlingguy.mysql
+    - ansible.builtin.debug: msg="NTP server is already checked"
+ 
+
+  
+    
+    
+
+
+
